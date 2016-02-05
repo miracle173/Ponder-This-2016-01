@@ -1,0 +1,51 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+gear(s1,s2):=append(create_list([i*j+d,i,j,d],i,s1,j,s2,d,[-1,0,1]));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+checkgear(g,[maxn]):=block([nextp:1,lastp:0,p],
+for ll in sort(g) do (
+p:ll[1],
+if lastp<p then (
+/*lastp<nextp<=p */
+    if nextp=p-1 then (print([p-1,"missing"]))
+    else if nextp=p-2 then (print([nextp,"missing"]),print([p-1,"missing"]))
+    else if nextp<p-2 then (print([nextp,"missing"]),print(".."),print([p-1,"missing"]))
+    ),
+print([ll[1],[ll[2],ll[3]],ll[4]]),
+lastp:p,
+nextp:p+1,
+if not emptyp(maxn) then if maxn[1]<nextp then return()
+)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+([1,3,7,4,8,5],[1,3,6,9,11,13]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+([2,3,7,4,8,5],[1,3,6,9,11,13]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+checkgear(gear([2,3,7,9,5,4],[1,3,6,8,11,12]),60);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+checkgear(gear([2, 3, 6, 21], [1, 4, 5, 9]),33);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s=sort([2, 5, 8, 9, 13, 7]);b=sort([1, 6, 3, 9, 4, 7]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[1,3,4,6,7,9], [2,5,7,8,9,13]
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
